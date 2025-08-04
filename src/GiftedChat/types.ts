@@ -36,7 +36,7 @@ import { ReanimatedScrollEvent } from 'react-native-reanimated/lib/typescript/ho
 
 export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends Partial<Omit<typeof MessageContainer<TMessage>, 'isScrollToBottomEnabled'>> {
   /* Message container ref */
-  messageContainerRef?: RefObject<AnimatedList>
+  messageContainerRef?: RefObject<AnimatedList | null>
   /* text input ref */
   textInputRef?: RefObject<TextInput>
   /* Messages to display */
