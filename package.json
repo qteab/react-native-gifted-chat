@@ -98,7 +98,7 @@
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "@shopify/flash-list": "^2.0.0-rc.12",
+    "@shopify/flash-list": ">=2.0.1",
     "react": "*",
     "react-native": "*",
     "react-native-keyboard-controller": ">=1.0.0",
