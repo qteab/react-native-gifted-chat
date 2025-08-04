@@ -7,6 +7,8 @@ import {
   StyleProp,
   TextStyle,
   ViewStyle,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native'
 import { LightboxProps } from 'react-native-lightbox-v2'
 import { ActionsProps } from '../Actions'
@@ -32,7 +34,6 @@ import { SystemMessageProps } from '../SystemMessage'
 import { TimeProps } from '../Time'
 import MessageContainer, { ListViewProps } from '../MessageContainer'
 import Bubble from '../Bubble'
-import { ReanimatedScrollEvent } from 'react-native-reanimated/lib/typescript/hook/commonTypes'
 import { FlashListRef } from '@shopify/flash-list'
 
 export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends Partial<Omit<typeof MessageContainer<TMessage>, 'isScrollToBottomEnabled'>> {
@@ -206,5 +207,5 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends P
     props: MessageProps<TMessage>,
     nextProps: MessageProps<TMessage>,
   ): boolean
-  handleOnScroll?(event: ReanimatedScrollEvent): void
+  handleOnScroll?(event: NativeSyntheticEvent<NativeScrollEvent>): void
 }

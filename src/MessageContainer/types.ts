@@ -1,6 +1,8 @@
 import React, { RefObject } from 'react'
 import {
   LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   StyleProp,
   ViewStyle,
 } from 'react-native'
@@ -9,7 +11,6 @@ import { FlashListProps, FlashListRef } from '@shopify/flash-list'
 import { LoadEarlierProps } from '../LoadEarlier'
 import { MessageProps } from '../Message'
 import { User, IMessage, Reply } from '../types'
-import { ReanimatedScrollEvent } from 'react-native-reanimated/lib/typescript/hook/commonTypes'
 
 export type ListViewProps = {
   onLayout?: (event: LayoutChangeEvent) => void
@@ -39,7 +40,7 @@ export interface MessageContainerProps<TMessage extends IMessage> {
   onQuickReply?(replies: Reply[]): void
   infiniteScroll?: boolean
   isLoadingEarlier?: boolean
-  handleOnScroll?(event: ReanimatedScrollEvent): void
+  handleOnScroll?(event: NativeSyntheticEvent<NativeScrollEvent>): void
   dayAnimated?: boolean
 }
 

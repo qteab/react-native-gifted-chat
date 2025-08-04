@@ -5,10 +5,11 @@ import {
   Text,
   Platform,
   LayoutChangeEvent,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native'
 import { FlashList, ListRenderItemInfo } from '@shopify/flash-list'
-import Animated, { runOnJS, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
-import { ReanimatedScrollEvent } from 'react-native-reanimated/lib/typescript/hook/commonTypes'
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import DayAnimated from './components/DayAnimated'
 import Item from './components/Item'
 
@@ -98,14 +99,14 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
       forwardRef.current.scrollToEnd({ animated })
   }, [forwardRef, inverted, scrollTo])
 
-  const handleOnScroll = useCallback((event: ReanimatedScrollEvent) => {
+  const handleOnScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     handleOnScrollProp?.(event)
 
     const {
       contentOffset: { y: contentOffsetY },
       contentSize: { height: contentSizeHeight },
       layoutMeasurement: { height: layoutMeasurementHeight },
-    } = event
+    } = event.nativeEvent
 
     const duration = 250
 
@@ -287,14 +288,6 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
 
   const keyExtractor = useCallback((item: unknown) => (item as TMessage)._id.toString(), [])
 
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: event => {
-      scrolledY.value = event.contentOffset.y
-
-      runOnJS(handleOnScroll)(event)
-    },
-  }, [handleOnScroll])
-
   return (
     <View
       style={[
@@ -318,7 +311,11 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         ListHeaderComponent={
           inverted ? ListFooterComponent : ListHeaderComponent
         }
-        onScroll={scrollHandler}
+        onScroll={event => {
+          scrolledY.value = event.nativeEvent.contentOffset.y
+
+          handleOnScroll(event)
+        }}
         scrollEventThrottle={16}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1}
