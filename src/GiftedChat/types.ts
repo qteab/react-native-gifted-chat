@@ -32,6 +32,7 @@ import { SystemMessageProps } from '../SystemMessage'
 import { TimeProps } from '../Time'
 import MessageContainer, { AnimatedList, ListViewProps } from '../MessageContainer'
 import Bubble from '../Bubble'
+import { ReanimatedScrollEvent } from 'react-native-reanimated/lib/typescript/hook/commonTypes'
 
 export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends Partial<Omit<typeof MessageContainer<TMessage>, 'isScrollToBottomEnabled'>> {
   /* Message container ref */
@@ -120,6 +121,7 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends P
   /* infinite scroll up when reach the top of messages container, automatically call onLoadEarlier function if exist */
   infiniteScroll?: boolean
   timeTextStyle?: LeftRightStyle<TextStyle>
+  dayAnimated?: boolean
   /* Custom action sheet */
   actionSheet?(): {
     showActionSheetWithOptions: (
@@ -203,4 +205,5 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends P
     props: MessageProps<TMessage>,
     nextProps: MessageProps<TMessage>,
   ): boolean
+  handleOnScroll?(event: ReanimatedScrollEvent): void
 }

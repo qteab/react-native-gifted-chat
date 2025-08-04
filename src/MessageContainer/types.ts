@@ -14,7 +14,7 @@ import { AnimateProps } from 'react-native-reanimated'
 
 export type ListViewProps = {
   onLayout?: (event: LayoutChangeEvent) => void
-} & object
+} & Omit<FlashListProps<unknown>, 'data' | 'renderItem' | 'keyExtractor'>
 
 export type AnimatedList = Component<AnimateProps<FlashListProps<unknown>>, unknown, unknown> & FlashList<FlashListProps<unknown>>
 
@@ -43,6 +43,7 @@ export interface MessageContainerProps<TMessage extends IMessage> {
   infiniteScroll?: boolean
   isLoadingEarlier?: boolean
   handleOnScroll?(event: ReanimatedScrollEvent): void
+  dayAnimated?: boolean
 }
 
 export interface State {

@@ -50,6 +50,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
     forwardRef,
     handleOnScroll: handleOnScrollProp,
     scrollToBottomComponent: scrollToBottomComponentProp,
+    dayAnimated = true,
   } = props
 
   const scrollToBottomOpacity = useSharedValue(0)
@@ -308,7 +309,6 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         extraData={[extraData, isTyping]}
         keyExtractor={keyExtractor}
         automaticallyAdjustContentInsets={false}
-        inverted={inverted}
         data={messages}
         style={stylesCommon.fill}
         renderItem={renderItem}
@@ -324,20 +324,24 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         scrollEventThrottle={16}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1}
-        estimatedItemSize={100}
         {...listViewProps}
+        maintainVisibleContentPosition={{
+          autoscrollToBottomThreshold: 0.2,
+          ...listViewProps?.maintainVisibleContentPosition,
+          startRenderingFromBottom: inverted,
+        }}
         onLayout={onLayoutList}
       />
       {isScrollToBottomEnabled
         ? renderScrollToBottomWrapper()
         : null}
-      <DayAnimated
+      {dayAnimated && <DayAnimated
         scrolledY={scrolledY}
         daysPositions={daysPositions}
         listHeight={listHeight}
         messages={messages}
         isLoadingEarlier={isLoadingEarlier}
-      />
+      />}
     </View>
   )
 }
