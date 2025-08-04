@@ -1,3 +1,7 @@
+# ⚠️ Disclaimer
+This is a fork of version 2.7.3 of [react-native-gifted-chat](https://github.com/FaridSafi/react-native-gifted-chat) which uses the `@shopify/flash-list` instead of FlatList. This fork is not meant to replace the original library but to provide an alternative for those who need better performance with large lists in React Native.
+
+
 <p align="center" >
 <p align="center" >
    <a href="https://reactnative.gallery/FaridSafi/gifted-chat">
