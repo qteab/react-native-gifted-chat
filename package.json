@@ -1,7 +1,7 @@
 {
-  "name": "react-native-gifted-chat",
+  "name": "@qte/react-native-gifted-chat",
   "version": "2.7.3",
-  "description": "The most complete chat UI for React Native",
+  "description": "Performant fork of react-native-gifted-chat with FlashList support",
   "keywords": [
     "android",
     "ios",
@@ -12,13 +12,13 @@
     "message",
     "chat"
   ],
-  "homepage": "https://github.com/FaridSafi/react-native-gifted-chat#readme",
+  "homepage": "https://github.com/qteab/react-native-gifted-chat#readme",
   "bugs": {
-    "url": "https://github.com/FaridSafi/react-native-gifted-chat/issues"
+    "url": "https://github.com/qteab/react-native-gifted-chat/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FaridSafi/react-native-gifted-chat.git"
+    "url": "git+https://github.com/qteab/react-native-gifted-chat.git"
   },
   "license": "MIT",
   "author": "Farid Safi",
