@@ -15,6 +15,8 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
   }
 >
   <View
+    collapsable={false}
+    onLayout={[Function]}
     style={
       {
         "flex": 1,
@@ -23,273 +25,53 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
     }
   >
     <RCTScrollView
-      ListEmptyComponent={[Function]}
-      ListFooterComponent={null}
-      ListHeaderComponent={
-        <React.Fragment>
-          <TypingIndicator
-            isTyping={false}
-          />
-        </React.Fragment>
-      }
-      applyWindowCorrection={[Function]}
       automaticallyAdjustContentInsets={false}
-      canChangeSize={true}
       collapsable={false}
-      contentContainerStyle={
-        {
-          "backgroundColor": undefined,
-          "minHeight": 1,
-          "minWidth": 1,
-          "paddingLeft": 0,
-          "paddingRight": 0,
-        }
-      }
-      contentHeight={0}
-      contentWidth={0}
-      data={[]}
-      dataProvider={
-        DataProvider {
-          "_data": [],
-          "_firstIndexToProcess": 0,
-          "_hasStableIds": true,
-          "_requiresDataChangeHandling": false,
-          "_size": 0,
-          "getStableId": [Function],
-          "rowHasChanged": [Function],
-        }
-      }
-      disableRecycling={false}
-      extendedState={
-        {
-          "value": [
-            null,
-            false,
-          ],
-        }
-      }
-      externalScrollView={[Function]}
-      extraData={
-        [
-          null,
-          false,
-        ]
-      }
-      finalRenderAheadOffset={250}
-      forceNonDeterministicRendering={true}
-      horizontal={false}
-      initialOffset={0}
-      initialRenderIndex={0}
-      isHorizontal={false}
-      jestAnimatedStyle={
-        {
-          "value": {},
-        }
-      }
-      jestInlineStyle={
-        {
-          "flex": 1,
-        }
-      }
       keyExtractor={[Function]}
-      layoutProvider={
-        GridLayoutProviderWithProps {
-          "_acceptableRelayoutDelta": 1,
-          "_getHeightOrWidth": [Function],
-          "_getLayoutTypeForIndex": [Function],
-          "_getSpan": [Function],
-          "_hasExpired": false,
-          "_maxSpan": 1,
-          "_setLayoutForType": [Function],
-          "_tempDim": {
-            "height": 0,
-            "width": 0,
-          },
-          "averageWindow": AverageWindow {
-            "currentAverage": 100,
-            "currentCount": 1,
-            "inputValues": [
-              100,
-            ],
-            "nextIndex": 1,
-          },
-          "defaultEstimatedItemSize": 100,
-          "layoutObject": {
-            "size": undefined,
-            "span": undefined,
-          },
-          "props": {
-            "ListEmptyComponent": [Function],
-            "ListFooterComponent": null,
-            "ListHeaderComponent": <React.Fragment>
-              <TypingIndicator
-                isTyping={false}
-              />
-            </React.Fragment>,
-            "automaticallyAdjustContentInsets": false,
-            "collapsable": false,
-            "data": [],
-            "extraData": [
-              null,
-              false,
-            ],
-            "jestAnimatedStyle": {
-              "value": {},
-            },
-            "jestInlineStyle": {
-              "flex": 1,
-            },
-            "keyExtractor": [Function],
-            "maintainVisibleContentPosition": {
-              "autoscrollToBottomThreshold": 0.2,
-              "startRenderingFromBottom": true,
-            },
-            "nativeID": undefined,
-            "numColumns": 1,
-            "onEndReached": [Function],
-            "onEndReachedThreshold": 0.1,
-            "onLayout": [Function],
-            "onScroll": [Function],
-            "renderItem": [Function],
-            "scrollEventThrottle": 16,
-            "style": {
-              "flex": 1,
-            },
-          },
-          "renderWindowInsets": {
-            "height": 0,
-            "width": 0,
-          },
-          "shouldRefreshWithAnchoring": true,
-        }
-      }
       maintainVisibleContentPosition={
         {
           "autoscrollToBottomThreshold": 0.2,
+          "minIndexForVisible": 0,
           "startRenderingFromBottom": true,
         }
       }
-      maxRenderAhead={750}
-      numColumns={1}
       onEndReached={[Function]}
-      onEndReachedThreshold={0}
-      onEndReachedThresholdRelative={0.1}
-      onItemLayout={[Function]}
+      onEndReachedThreshold={0.1}
       onLayout={[Function]}
       onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onSizeChanged={[Function]}
-      onVisibleIndicesChanged={[Function]}
-      removeClippedSubviews={false}
-      renderAheadOffset={0}
-      renderAheadStep={250}
-      renderContentContainer={[Function]}
-      renderItem={[Function]}
-      renderItemContainer={[Function]}
-      rowRenderer={[Function]}
       scrollEventThrottle={16}
-      scrollThrottle={16}
-      scrollViewProps={
-        {
-          "contentContainerStyle": {
-            "backgroundColor": undefined,
-            "minHeight": 1,
-            "minWidth": 1,
-            "paddingLeft": 0,
-            "paddingRight": 0,
-          },
-          "onLayout": [Function],
-          "onScrollBeginDrag": [Function],
-          "refreshControl": undefined,
-          "style": {
-            "minHeight": 1,
-            "minWidth": 1,
-          },
-        }
-      }
-      style={
-        {
-          "minHeight": 1,
-          "minWidth": 1,
-        }
-      }
-      suppressBoundedSizeException={true}
-      windowCorrectionConfig={
-        {
-          "applyToInitialOffset": true,
-          "applyToItemScroll": true,
-          "value": {
-            "endCorrection": 0,
-            "startCorrection": 0,
-            "windowShift": -1,
-          },
-        }
-      }
+      style={{}}
     >
       <View>
         <View
           style={
             {
-              "flexDirection": "column",
+              "height": 0,
+              "left": 0,
+              "position": "absolute",
+              "top": 1000000,
             }
           }
-        >
-          <View
-            style={
-              {
-                "paddingLeft": 0,
-                "paddingTop": 0,
-              }
+        />
+        <View />
+        <View
+          style={
+            {
+              "height": 0,
+              "width": undefined,
             }
-          />
-          <View
-            style={
-              [
-                undefined,
-                undefined,
-              ]
+          }
+        />
+        <View
+          style={false}
+        />
+        <View
+          style={
+            {
+              "flex": 1,
             }
-          />
-          <AutoLayoutView
-            enableInstrumentation={false}
-            horizontal={false}
-            onBlankAreaEvent={[Function]}
-            onLayout={[Function]}
-            renderAheadOffset={0}
-            scrollOffset={0}
-            style={
-              {
-                "height": 0,
-                "width": 0,
-              }
-            }
-            windowSize={0}
-          />
-          <View
-            style={
-              {
-                "flex": 1,
-              }
-            }
-          />
-          <CellContainer
-            index={-1}
-            style={
-              [
-                undefined,
-                undefined,
-              ]
-            }
-          />
-          <View
-            style={
-              {
-                "paddingBottom": 0,
-                "paddingRight": 0,
-              }
-            }
-          />
-        </View>
+          }
+        />
       </View>
     </RCTScrollView>
   </View>

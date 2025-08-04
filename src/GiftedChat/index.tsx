@@ -30,7 +30,7 @@ import { GiftedChatContext } from '../GiftedChatContext'
 import { InputToolbar } from '../InputToolbar'
 import { LoadEarlier } from '../LoadEarlier'
 import Message from '../Message'
-import MessageContainer, { AnimatedList } from '../MessageContainer'
+import MessageContainer from '../MessageContainer'
 import { MessageImage } from '../MessageImage'
 import { MessageText } from '../MessageText'
 import {
@@ -52,11 +52,12 @@ import { GiftedChatProps } from './types'
 
 import stylesCommon from '../styles'
 import styles from './styles'
+import { FlashListRef } from '@shopify/flash-list'
 
 dayjs.extend(localizedFormat)
 
 function GiftedChat<TMessage extends IMessage = IMessage> (
-  props: GiftedChatProps
+  props: GiftedChatProps<TMessage>
 ) {
   const {
     messages = [],
@@ -94,7 +95,7 @@ function GiftedChat<TMessage extends IMessage = IMessage> (
   const actionSheetRef = useRef<ActionSheetProviderRef>(null)
 
   const messageContainerRef = useMemo(
-    () => props.messageContainerRef || createRef<AnimatedList>(),
+    () => props.messageContainerRef || createRef<FlashListRef<TMessage>>(),
     [props.messageContainerRef]
   )
 

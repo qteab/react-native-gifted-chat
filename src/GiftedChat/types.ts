@@ -30,13 +30,14 @@ import { QuickRepliesProps } from '../QuickReplies'
 import { SendProps } from '../Send'
 import { SystemMessageProps } from '../SystemMessage'
 import { TimeProps } from '../Time'
-import MessageContainer, { AnimatedList, ListViewProps } from '../MessageContainer'
+import MessageContainer, { ListViewProps } from '../MessageContainer'
 import Bubble from '../Bubble'
 import { ReanimatedScrollEvent } from 'react-native-reanimated/lib/typescript/hook/commonTypes'
+import { FlashListRef } from '@shopify/flash-list'
 
 export interface GiftedChatProps<TMessage extends IMessage = IMessage> extends Partial<Omit<typeof MessageContainer<TMessage>, 'isScrollToBottomEnabled'>> {
   /* Message container ref */
-  messageContainerRef?: RefObject<AnimatedList | null>
+  messageContainerRef?: RefObject<FlashListRef<TMessage> | null>
   /* text input ref */
   textInputRef?: RefObject<TextInput>
   /* Messages to display */

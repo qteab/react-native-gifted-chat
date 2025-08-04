@@ -24,8 +24,6 @@ import styles from './styles'
 
 export * from './types'
 
-const AnimatedFlashList = Animated.createAnimatedComponent(FlashList)
-
 function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageContainerProps<TMessage>) {
   const {
     messages = [],
@@ -139,7 +137,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
 
   const handleLayoutDayWrapper = useCallback((ref: unknown, id: string | number, createdAt: number) => {
     setTimeout(() => { // do not delete "setTimeout". It's necessary for get correct layout.
-      const itemLayout = forwardRef?.current?.recyclerlistview_unsafe?.getLayout(messages.findIndex(m => m._id === id))
+      const itemLayout = forwardRef?.current?.getLayout(messages.findIndex(m => m._id === id))
 
       if (ref && itemLayout)
         daysPositions.modify(value => {
@@ -186,7 +184,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
       const nextMessage =
         (inverted ? messages[index - 1] : messages[index + 1]) || {}
 
-      const messageProps: ItemProps = {
+      const messageProps: ItemProps<TMessage> = {
         ...restProps,
         currentMessage: messageItem,
         previousMessage,
@@ -304,7 +302,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         alignTop ? styles.containerAlignTop : stylesCommon.fill,
       ]}
     >
-      <AnimatedFlashList
+      <FlashList
         ref={forwardRef}
         extraData={[extraData, isTyping]}
         keyExtractor={keyExtractor}
