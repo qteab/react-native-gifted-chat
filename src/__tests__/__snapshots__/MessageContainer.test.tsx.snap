@@ -19,11 +19,6 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
       {
         "flex": 1,
         "overflow": "hidden",
-        "transform": [
-          {
-            "scaleY": -1,
-          },
-        ],
       }
     }
   >
@@ -65,7 +60,6 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
         }
       }
       disableRecycling={false}
-      estimatedItemSize={100}
       extendedState={
         {
           "value": [
@@ -86,7 +80,6 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
       horizontal={false}
       initialOffset={0}
       initialRenderIndex={0}
-      inverted={true}
       isHorizontal={false}
       jestAnimatedStyle={
         {
@@ -136,12 +129,10 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
             "automaticallyAdjustContentInsets": false,
             "collapsable": false,
             "data": [],
-            "estimatedItemSize": 100,
             "extraData": [
               null,
               false,
             ],
-            "inverted": true,
             "jestAnimatedStyle": {
               "value": {},
             },
@@ -149,6 +140,10 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
               "flex": 1,
             },
             "keyExtractor": [Function],
+            "maintainVisibleContentPosition": {
+              "autoscrollToBottomThreshold": 0.2,
+              "startRenderingFromBottom": true,
+            },
             "nativeID": undefined,
             "numColumns": 1,
             "onEndReached": [Function],
@@ -166,6 +161,12 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
             "width": 0,
           },
           "shouldRefreshWithAnchoring": true,
+        }
+      }
+      maintainVisibleContentPosition={
+        {
+          "autoscrollToBottomThreshold": 0.2,
+          "startRenderingFromBottom": true,
         }
       }
       maxRenderAhead={750}
@@ -245,13 +246,7 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
             style={
               [
                 undefined,
-                {
-                  "transform": [
-                    {
-                      "scaleY": -1,
-                    },
-                  ],
-                },
+                undefined,
               ]
             }
           />
@@ -282,13 +277,7 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
             style={
               [
                 undefined,
-                {
-                  "transform": [
-                    {
-                      "scaleY": -1,
-                    },
-                  ],
-                },
+                undefined,
               ]
             }
           />
