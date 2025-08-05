@@ -314,7 +314,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         extraData={[extraData, isTyping]}
         keyExtractor={keyExtractor}
         automaticallyAdjustContentInsets={false}
-        data={inverted ? messages.reverse() : messages}
+        data={inverted ? [...messages].reverse() : messages}
         style={stylesCommon.fill}
         renderItem={renderItem}
         {...invertibleScrollViewProps}
