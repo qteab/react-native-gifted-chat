@@ -8,7 +8,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from 'react-native'
-import { FlashList, ListRenderItemInfo } from '@shopify/flash-list'
+import { FlashList, FlashListProps, ListRenderItemInfo } from '@shopify/flash-list'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import DayAnimated from './components/DayAnimated'
 import Item from './components/Item'
@@ -288,6 +288,16 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
 
   const keyExtractor = useCallback((item: unknown) => (item as TMessage)._id.toString(), [])
 
+  const onReachedProps: Pick<FlashListProps<TMessage>, 'onEndReached' | 'onEndReachedThreshold' | 'onStartReached' | 'onStartReachedThreshold'> = inverted
+    ? {
+      onStartReached: onEndReached,
+      onStartReachedThreshold: 0.1,
+    }
+    : {
+      onEndReached,
+      onEndReachedThreshold: 0.1,
+    }
+
   return (
     <View
       style={[
@@ -300,28 +310,24 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         extraData={[extraData, isTyping]}
         keyExtractor={keyExtractor}
         automaticallyAdjustContentInsets={false}
-        data={messages}
+        data={inverted ? messages.reverse() : messages}
         style={stylesCommon.fill}
         renderItem={renderItem}
         {...invertibleScrollViewProps}
         ListEmptyComponent={renderChatEmpty}
-        ListFooterComponent={
-          inverted ? ListHeaderComponent : ListFooterComponent
-        }
-        ListHeaderComponent={
-          inverted ? ListFooterComponent : ListHeaderComponent
-        }
+        ListFooterComponent={ListFooterComponent}
+        ListHeaderComponent={ListHeaderComponent}
         onScroll={event => {
           scrolledY.value = event.nativeEvent.contentOffset.y
 
           handleOnScroll(event)
         }}
         scrollEventThrottle={16}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.1}
+        {...onReachedProps}
         {...listViewProps}
         maintainVisibleContentPosition={{
           autoscrollToBottomThreshold: 0.2,
+          animateAutoScrollToBottom: true,
           ...listViewProps?.maintainVisibleContentPosition,
           startRenderingFromBottom: inverted,
         }}

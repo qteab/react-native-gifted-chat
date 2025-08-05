@@ -30,15 +30,16 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
       keyExtractor={[Function]}
       maintainVisibleContentPosition={
         {
+          "animateAutoScrollToBottom": true,
           "autoscrollToBottomThreshold": 0.2,
           "minIndexForVisible": 0,
           "startRenderingFromBottom": true,
         }
       }
-      onEndReached={[Function]}
-      onEndReachedThreshold={0.1}
       onLayout={[Function]}
       onScroll={[Function]}
+      onStartReached={[Function]}
+      onStartReachedThreshold={0.1}
       scrollEventThrottle={16}
       style={{}}
     >
@@ -53,7 +54,6 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
             }
           }
         />
-        <View />
         <View
           style={
             {
@@ -72,6 +72,7 @@ exports[`should render <MessageContainer /> and compare with snapshot 1`] = `
             }
           }
         />
+        <View />
       </View>
     </RCTScrollView>
   </View>
