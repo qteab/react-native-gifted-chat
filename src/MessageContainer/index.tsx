@@ -292,6 +292,8 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
 
   const keyExtractor = useCallback((item: unknown) => (item as TMessage)._id.toString(), [])
 
+  const data = useMemo(() => inverted ? [...messages].reverse() : messages, [inverted, messages])
+
   const onReachedProps: Pick<FlashListProps<TMessage>, 'onEndReached' | 'onEndReachedThreshold' | 'onStartReached' | 'onStartReachedThreshold'> = inverted
     ? {
       onStartReached: onEndReached,
@@ -314,7 +316,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         extraData={[extraData, isTyping]}
         keyExtractor={keyExtractor}
         automaticallyAdjustContentInsets={false}
-        data={inverted ? [...messages].reverse() : messages}
+        data={data}
         style={stylesCommon.fill}
         renderItem={renderItem}
         {...invertibleScrollViewProps}
