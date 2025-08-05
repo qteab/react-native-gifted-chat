@@ -183,21 +183,13 @@ function GiftedChat<TMessage extends IMessage = IMessage> (
   }, [enableTyping])
 
   const scrollToBottom = useCallback(
-    (isAnimated = true) => {
+    (isAnimated = false) => {
       if (!messageContainerRef?.current)
         return
 
-      if (inverted) {
-        messageContainerRef.current.scrollToOffset({
-          offset: 0,
-          animated: isAnimated,
-        })
-        return
-      }
-
       messageContainerRef.current.scrollToEnd({ animated: isAnimated })
     },
-    [inverted, messageContainerRef]
+    [messageContainerRef]
   )
 
   const renderMessages = useMemo(() => {

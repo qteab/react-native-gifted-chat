@@ -27,7 +27,7 @@ export * from './types'
 
 function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageContainerProps<TMessage>) {
   const {
-    messages = [],
+    messages: messagesProp = [],
     user,
     isTyping = false,
     renderChatEmpty: renderChatEmptyProp,
@@ -51,6 +51,8 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
     scrollToBottomComponent: scrollToBottomComponentProp,
     dayAnimated = true,
   } = props
+
+  const messages = useMemo(() => inverted ? [...messagesProp].reverse() : messagesProp, [inverted, messagesProp])
 
   const scrollToBottomOpacity = useSharedValue(0)
   const [isScrollToBottomVisible, setIsScrollToBottomVisible] = useState(false)
@@ -87,17 +89,10 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
     return null
   }, [loadEarlier, renderLoadEarlierProp, props])
 
-  const scrollTo = useCallback((options: { animated?: boolean, offset: number }) => {
-    if (forwardRef?.current && options)
-      forwardRef.current.scrollToOffset(options)
-  }, [forwardRef])
-
-  const doScrollToBottom = useCallback((animated: boolean = true) => {
-    if (inverted)
-      scrollTo({ offset: 0, animated })
-    else if (forwardRef?.current)
+  const doScrollToBottom = useCallback((animated: boolean = false) => {
+    if (forwardRef?.current)
       forwardRef.current.scrollToEnd({ animated })
-  }, [forwardRef, inverted, scrollTo])
+  }, [forwardRef, inverted])
 
   const handleOnScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     handleOnScrollProp?.(event)
@@ -181,6 +176,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
       messageItem.user = { _id: 0 }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { messages, ...restProps } = props
 
     if (messages && user) {
@@ -292,8 +288,6 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
 
   const keyExtractor = useCallback((item: unknown) => (item as TMessage)._id.toString(), [])
 
-  const data = useMemo(() => inverted ? [...messages].reverse() : messages, [inverted, messages])
-
   const onReachedProps: Pick<FlashListProps<TMessage>, 'onEndReached' | 'onEndReachedThreshold' | 'onStartReached' | 'onStartReachedThreshold'> = inverted
     ? {
       onStartReached: onEndReached,
@@ -316,7 +310,7 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
         extraData={[extraData, isTyping]}
         keyExtractor={keyExtractor}
         automaticallyAdjustContentInsets={false}
-        data={data}
+        data={messages}
         style={stylesCommon.fill}
         renderItem={renderItem}
         {...invertibleScrollViewProps}
