@@ -177,13 +177,11 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { messages, ...restProps } = props
+    const { messages: _, ...restProps } = props
 
     if (messages && user) {
-      const previousMessage =
-        (inverted ? messages[index + 1] : messages[index - 1]) || {}
-      const nextMessage =
-        (inverted ? messages[index - 1] : messages[index + 1]) || {}
+      const previousMessage = messages[index - 1] || {}
+      const nextMessage = messages[index + 1] || {}
 
       const messageProps: ItemProps<TMessage> = {
         ...restProps,
