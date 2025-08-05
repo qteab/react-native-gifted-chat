@@ -137,6 +137,10 @@ function MessageContainer<TMessage extends IMessage = IMessage> (props: MessageC
   }, [handleOnScrollProp, inverted, scrollToBottomOffset, scrollToBottomOpacity])
 
   const handleLayoutDayWrapper = useCallback((ref: unknown, id: string | number, createdAt: number) => {
+    if (!dayAnimated)
+      // If dayAnimated is false, we do not need to track day positions.
+      return
+
     setTimeout(() => { // do not delete "setTimeout". It's necessary for get correct layout.
       const itemLayout = forwardRef?.current?.getLayout(messages.findIndex(m => m._id === id))
 
