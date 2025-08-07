@@ -1,6 +1,6 @@
 {
   "name": "@qte/react-native-gifted-chat",
-  "version": "2.7.14",
+  "version": "2.7.15",
   "description": "Performant fork of react-native-gifted-chat with FlashList support",
   "keywords": [
     "android",
