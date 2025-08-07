@@ -120,16 +120,17 @@ Message = memo(Message, (props, nextProps) => {
   const nextPropsMessage = nextProps.nextMessage
   const nextPropsPreviousMessage = nextProps.previousMessage
 
-  let shouldUpdate =
+  let hasChanges =
     props.shouldUpdateMessage?.(props, nextProps) || false
 
-  shouldUpdate =
-    shouldUpdate ||
+  hasChanges =
+    hasChanges ||
     !isEqual(current, next) ||
     !isEqual(previousMessage, nextPropsPreviousMessage) ||
     !isEqual(nextMessage, nextPropsMessage)
 
-  return shouldUpdate
+  // Return `true` to skip re-render, `false` to re-render
+  return !hasChanges
 })
 
 export default Message
